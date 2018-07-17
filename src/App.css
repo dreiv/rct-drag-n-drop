@@ -1,0 +1,22 @@
+.draggable {
+	display: grid;
+
+	max-width: 40rem;
+	margin: 5rem auto;
+	padding: 0;
+
+	list-style: none;
+
+	grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+	gap: 1rem;
+}
+
+.draggable > li {
+	padding: 2rem;
+
+	background: lime;
+}
+
+.draggable > .dropTarget {
+	background: hotpink;
+}

@@ -9,7 +9,7 @@ class App extends Component {
 		this.state = {
 			items: fillRange(1, 10),
 			dragging: false,
-			dropKey: 0,
+			dropKey: -1,
 		}
 	}
 
@@ -37,14 +37,18 @@ class App extends Component {
 		items[key] = items[dropKey]
 		items[dropKey] = aux
 
-		this.setState({ items })
+		this.setState({
+			items,
+			dropKey: -1,
+		})
 	}
 
 	render() {
-		const { items } = this.state
+		const { items, dropKey } = this.state
 
 		const renderedItems = items.map((item, idx) => (
 			<li
+				className={idx === dropKey && 'dropTarget'}
 				key={idx}
 				onDragStart={this.drag}
 				onDragOver={() => this.dragOver(idx)}
@@ -55,11 +59,7 @@ class App extends Component {
 			</li>
 		))
 
-		return (
-			<div className="App">
-				<ul>{renderedItems}</ul>
-			</div>
-		)
+		return <ul className="draggable">{renderedItems}</ul>
 	}
 }
 
